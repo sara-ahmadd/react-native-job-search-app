@@ -9,8 +9,10 @@ import {
   View,
 } from "react-native";
 import search from "./../assets/images/search.png";
+import { useRouter } from "expo-router";
 
 function WelcomeScreen() {
+  const router = useRouter();
   const [text, onChangeText] = useState("");
   const [jobTypes, setJobTypes] = useState([
     "Full Time",
@@ -38,16 +40,22 @@ function WelcomeScreen() {
           <Image source={search} style={styles.img} resizeMode="contain" />
         </TouchableOpacity>
       </View>
-      <View style={styles.jobTypes}>
+      <View>
         <FlatList
           data={jobTypes}
+          horizontal
+          contentContainerStyle={styles.jobTypes}
+          keyExtractor={(item) => item}
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
                 style={styles.jobTab(activeJOB, item)}
-                onPress={() => setActiveJOB(item)}
+                onPress={() => {
+                  setActiveJOB(item);
+                  router.push(`/search/${item}`);
+                }}
               >
-                <Text>{item}</Text>
+                <Text style={styles.jobTabText(activeJOB, item)}>{item}</Text>
               </TouchableOpacity>
             );
           }}
@@ -72,7 +80,7 @@ const styles = StyleSheet.create({
   },
   input: {
     width: "60%",
-    backgroundColor: "#e8e8e1",
+    backgroundColor: "#fcfafa",
     height: 40,
     borderRadius: 10,
     padding: 10,
@@ -93,18 +101,21 @@ const styles = StyleSheet.create({
   },
   jobTypes: {
     padding: 5,
-    justifyContent: "center",
+    columnGap: 10,
   },
   jobTab: (activeJob, item) => ({
-    width: "70%",
     borderRadius: 20,
     padding: 7,
-    backgroundColor: "#cfcfcc",
+    backgroundColor: "#fcfafa",
     marginTop: 5,
     flexDirection: "row",
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: activeJob === item ? "#333" : "transparent",
+    borderColor: activeJob === item ? "#333" : "#c2c0ba",
+    width: 100,
+  }),
+  jobTabText: (activeJob, item) => ({
+    color: activeJob === item ? "#000" : "#bdbdb7",
   }),
 });
 export default WelcomeScreen;
