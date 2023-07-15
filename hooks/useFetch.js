@@ -9,11 +9,13 @@ const useFetch = (endPoint, searchQuery) => {
 
   const options = {
     method: "GET",
-    url: `https://jobsearch4.p.rapidapi.com/api/v1/Jobs/${endPoint}`,
-    params: { SearchQuery: searchQuery },
+    url: `https://jsearch.p.rapidapi.com/${endPoint}`,
+    params: {
+      ...searchQuery,
+    },
     headers: {
       "X-RapidAPI-Key": `${API_KEY}`,
-      "X-RapidAPI-Host": "jobsearch4.p.rapidapi.com",
+      "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
     },
   };
 
@@ -23,8 +25,9 @@ const useFetch = (endPoint, searchQuery) => {
       const response = await axios.request(options);
       setIsLoading(false);
       setJobs(response.data.data);
-      // console.log(response.data.data.map((x) => x));
+      console.log(response.data.data);
     } catch (error) {
+      console.error(error);
       setIsLoading(false);
       setError(true);
     }
@@ -34,12 +37,7 @@ const useFetch = (endPoint, searchQuery) => {
     getJobs();
   }, []);
 
-  const reFetch = () => {
-    setIsLoading(true);
-    getJobs();
-  };
-
-  return { jobs, isLoading, error, reFetch };
+  return { jobs, isLoading, error };
 };
 
 export default useFetch;

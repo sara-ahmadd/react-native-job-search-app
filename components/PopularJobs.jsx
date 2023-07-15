@@ -8,8 +8,14 @@ import useFetch from "../hooks/useFetch";
 
 function PopularJobs() {
   const router = useRouter();
-  const { jobs, error, isLoading } = useFetch("Search", "React developer");
-
+  const { jobs, error, isLoading } = useFetch("search", {
+    query: "react developer",
+    page: "1",
+    num_pages: "1",
+  });
+  const goToJobDetails = (id) => {
+    router.push(`/job-details/${id}`);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -26,10 +32,17 @@ function PopularJobs() {
         ) : (
           <FlatList
             data={jobs}
-            keyExtractor={(item) => item.postDate}
+            keyExtractor={(item) => item.job_id}
             contentContainerStyle={styles.jobsList}
             renderItem={({ item }) => {
-              return <PopularJobCard job={item} />;
+              return (
+                <PopularJobCard
+                  job={item}
+                  handleNavigate={() => {
+                    goToJobDetails(item.job_id);
+                  }}
+                />
+              );
             }}
             horizontal
           />

@@ -3,7 +3,7 @@ import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-function PopularJobCard({ job, handleNavigate }) {
+function NearJobCard({ job, handleNavigate }) {
   return (
     <TouchableOpacity style={styles.container} onPress={handleNavigate}>
       {job?.employer_logo ? (
@@ -17,7 +17,7 @@ function PopularJobCard({ job, handleNavigate }) {
       )}
       <TouchableOpacity style={styles.details}>
         <Text numberOfLines={1}>{job.job_title}</Text>
-        <Text style={styles.companyName}>Company : {job.employer_name}</Text>
+        <Text style={styles.companyName}>{job.job_employment_type}</Text>
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 15,
     borderRadius: 15,
+    marginBottom: 10,
   },
   details: {
     gap: 5,
@@ -48,4 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PopularJobCard;
+export default NearJobCard;
