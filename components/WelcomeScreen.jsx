@@ -14,11 +14,7 @@ import { useRouter } from "expo-router";
 function WelcomeScreen() {
   const router = useRouter();
   const [text, onChangeText] = useState("");
-  const [jobTypes, setJobTypes] = useState([
-    "Full Time",
-    "Part Time",
-    "Contractor",
-  ]);
+  const [jobTypes] = useState(["Full Time", "Part Time", "Contractor"]);
   const [activeJOB, setActiveJOB] = useState("Full Time");
 
   return (

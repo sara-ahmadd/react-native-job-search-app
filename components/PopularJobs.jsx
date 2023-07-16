@@ -9,12 +9,12 @@ import useFetch from "../hooks/useFetch";
 function PopularJobs() {
   const router = useRouter();
   const { jobs, error, isLoading } = useFetch("search", {
-    query: "react developer",
+    query: "frontend developer",
     page: "1",
     num_pages: "1",
   });
-  const goToJobDetails = (id) => {
-    router.push(`/job-details/${id}`);
+  const goToJobDetails = (item) => {
+    router.push(`/job-details/${item.job_id}`);
   };
   return (
     <View style={styles.container}>
@@ -36,12 +36,7 @@ function PopularJobs() {
             contentContainerStyle={styles.jobsList}
             renderItem={({ item }) => {
               return (
-                <PopularJobCard
-                  job={item}
-                  handleNavigate={() => {
-                    goToJobDetails(item.job_id);
-                  }}
-                />
+                <PopularJobCard job={item} handleNavigate={goToJobDetails} />
               );
             }}
             horizontal

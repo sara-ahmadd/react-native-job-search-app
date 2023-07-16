@@ -5,7 +5,10 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 function PopularJobCard({ job, handleNavigate }) {
   return (
-    <TouchableOpacity style={styles.container} onPress={handleNavigate}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => handleNavigate(job)}
+    >
       {job?.employer_logo ? (
         <Image
           source={{ uri: job.employer_logo }}
