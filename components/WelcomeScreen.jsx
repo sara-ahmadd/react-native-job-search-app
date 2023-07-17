@@ -11,7 +11,7 @@ import {
 import search from "./../assets/images/search.png";
 import { useRouter } from "expo-router";
 
-function WelcomeScreen() {
+function WelcomeScreen({ searchText, setSearchText, handleClick }) {
   const router = useRouter();
   const [text, onChangeText] = useState("");
   const [jobTypes] = useState(["Full Time", "Part Time", "Contractor"]);
@@ -26,13 +26,13 @@ function WelcomeScreen() {
       <View style={styles.inputData}>
         <TextInput
           style={styles.input}
-          value={text}
-          onChangeText={onChangeText}
+          value={searchText}
+          onChangeText={(text) => setSearchText(text)}
           placeholder="What are you lookink for?"
           placeholderTextColor={"#bdbdb7"}
         />
 
-        <TouchableOpacity style={styles.imgContainer}>
+        <TouchableOpacity style={styles.imgContainer} onPress={handleClick}>
           <Image source={search} style={styles.img} resizeMode="contain" />
         </TouchableOpacity>
       </View>

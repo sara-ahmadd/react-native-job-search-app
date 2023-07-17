@@ -1,6 +1,6 @@
-import React from "react";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
-import { SplashScreen, Stack } from "expo-router";
+import React, { useState } from "react";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { Stack, useRouter } from "expo-router";
 import ScreenHeaderBtn from "../components/ScreenHeaderBtn";
 import WelcomeScreen from "../components/WelcomeScreen";
 import PopularJobs from "../components/PopularJobs";
@@ -9,12 +9,17 @@ import menu from "./../assets/images/menu.png";
 import user from "./../assets/images/user.png";
 
 const App = () => {
+  const router = useRouter();
+  const [searchText, setSearchText] = useState("");
+  const searchFunction = () => {
+    searchText && router.push(`/search/${searchText}`);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Stack.Screen
         options={{
           headerStyle: {
-            backgroundColor: "#bcbdb7",
+            backgroundColor: "#f0e9d8",
           },
           headerShadowVisible: true,
           headerLeft: () => {
@@ -28,7 +33,11 @@ const App = () => {
       />
       <ScrollView>
         <View style={styles.container}>
-          <WelcomeScreen />
+          <WelcomeScreen
+            searchText={searchText}
+            setSearchText={setSearchText}
+            handleClick={searchFunction}
+          />
           <PopularJobs />
           <NearJobs />
         </View>

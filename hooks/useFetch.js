@@ -12,7 +12,7 @@ const useFetch = (endPoint, searchQuery) => {
     url: `https://jsearch.p.rapidapi.com/${endPoint}`,
     params: { ...searchQuery },
     headers: {
-      "X-RapidAPI-Key": `${API_KEY}`,
+      "X-RapidAPI-Key": `6d1b92e32bmsh7d1bd75fe9fb96ap1968e2jsna3b506b62fda`,
       "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
     },
   };
@@ -20,10 +20,9 @@ const useFetch = (endPoint, searchQuery) => {
   const getJobs = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.request(options);
+      // const response = await axios.request(options);
       setIsLoading(false);
       setJobs(response.data.data);
-      console.log(response.data.data);
     } catch (error) {
       console.error(error);
       setIsLoading(false);
@@ -34,8 +33,11 @@ const useFetch = (endPoint, searchQuery) => {
   useEffect(() => {
     getJobs();
   }, []);
-
-  return { jobs, isLoading, error };
+  const refetch = () => {
+    setIsLoading(true);
+    getJobs();
+  };
+  return { jobs, isLoading, error, refetch };
 };
 
 export default useFetch;

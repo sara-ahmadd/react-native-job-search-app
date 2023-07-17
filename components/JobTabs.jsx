@@ -14,7 +14,7 @@ const JobTabs = ({ tab, activeTab, setActiveTab }) => {
 
 const styles = StyleSheet.create({
   container: (tab, activeTab) => ({
-    paddingHorizontal: 10,
+    paddingHorizontal: 5,
     paddingVertical: 10,
     backgroundColor: tab === activeTab ? "#f0e9d8" : "transparent",
     borderRadius: 20,
