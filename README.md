@@ -1,14 +1,11 @@
-# Expo Router Example
+# Job Search
 
-Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
+- A React native application where the user can search for different jobs aand apply for them easily.
 
-## 🚀 How to use
+- (Try it now)[https://expo.dev/@saraahmadd/job-search?serviceType=classic&distribution=expion=expo-go]
 
-```sh
-npx create-expo-app -e with-router
-```
+## Created with React Native/Expo-CLI
 
-## 📝 Notes
+### Author
 
-- [Expo Router: Docs](https://expo.github.io/router)
-- [Expo Router: Repo](https://github.com/expo/router)
+**_Sara Ahmad_**

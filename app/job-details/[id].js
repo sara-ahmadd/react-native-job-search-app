@@ -77,18 +77,19 @@ function JobDetails() {
           },
         }}
       />
-      <ScrollView
-        style={{
-          width: "100%",
-          paddingTop: 15,
-        }}
-      >
-        {isLoading ? (
-          <ActivityIndicator />
-        ) : error ? (
-          <Text>Somthing went wrong</Text>
-        ) : (
-          <>
+
+      {isLoading ? (
+        <ActivityIndicator />
+      ) : error ? (
+        <Text>Somthing went wrong</Text>
+      ) : (
+        <>
+          <ScrollView
+            style={{
+              width: "100%",
+              paddingTop: 15,
+            }}
+          >
             <View>
               <View style={styles.title}>
                 {jobs && jobs[0].employer_logo ? (
@@ -134,15 +135,16 @@ function JobDetails() {
               />
               {specificData()}
             </View>
-          </>
-        )}
-      </ScrollView>
-      <ApplyBtn
-        url={
-          jobs &&
-          (jobs[0].job_google_link ?? `https://careers.google.com/jobs/results`)
-        }
-      />
+          </ScrollView>
+          <ApplyBtn
+            url={
+              jobs &&
+              (jobs[0].job_google_link ??
+                `https://careers.google.com/jobs/results`)
+            }
+          />
+        </>
+      )}
     </SafeAreaView>
   );
 }

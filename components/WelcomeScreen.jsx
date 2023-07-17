@@ -13,14 +13,13 @@ import { useRouter } from "expo-router";
 
 function WelcomeScreen({ searchText, setSearchText, handleClick }) {
   const router = useRouter();
-  const [text, onChangeText] = useState("");
   const [jobTypes] = useState(["Full Time", "Part Time", "Contractor"]);
   const [activeJOB, setActiveJOB] = useState("Full Time");
 
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.welcomeMsg}>Hello User</Text>
+        <Text style={styles.welcomeMsg}>Hello There</Text>
         <Text style={styles.findJob}>Find Your Job</Text>
       </View>
       <View style={styles.inputData}>

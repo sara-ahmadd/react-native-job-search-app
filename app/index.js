@@ -11,7 +11,7 @@ import user from "./../assets/images/user.png";
 const App = () => {
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
-  const searchFunction = () => {
+  const searchFunction = (searchText) => {
     searchText && router.push(`/search/${searchText}`);
   };
   return (
@@ -36,7 +36,9 @@ const App = () => {
           <WelcomeScreen
             searchText={searchText}
             setSearchText={setSearchText}
-            handleClick={searchFunction}
+            handleClick={() => {
+              searchFunction(searchText);
+            }}
           />
           <PopularJobs />
           <NearJobs />

@@ -20,7 +20,7 @@ function PopularJobs() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Popular Jobs</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push(`/search/Popular Jobs`)}>
           <Text>Show All</Text>
         </TouchableOpacity>
       </View>

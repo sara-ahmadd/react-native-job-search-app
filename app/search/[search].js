@@ -1,35 +1,40 @@
-import React from "react";
+import { Stack, useRouter, useSearchParams } from "expo-router";
+import useFetch from "../../hooks/useFetch";
 import {
+  ActivityIndicator,
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
-import { ActivityIndicator } from "react-native";
-import { useRouter } from "expo-router";
-// import useFetch from "../hooks/useFetch";
-import NearJobCard from "./NearJobCard";
-import useFetch from "../hooks/useFetch";
+import NearJobCard from "../../components/NearJobCard";
+import ScreenHeaderBtn from "../../components/ScreenHeaderBtn";
+import left from "../../assets/images/left-arrow.png";
 
-function NearJobs() {
-  const router = useRouter();
+const Search = () => {
+  const params = useSearchParams();
   const { jobs, error, isLoading } = useFetch("search", {
-    query: "react developer",
+    query: params.search,
     page: "1",
     num_pages: "1",
   });
+  const router = useRouter();
   const goToJob = (id) => {
     router.push(`/job-details/${id}`);
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Nearby Jobs</Text>
-        <TouchableOpacity onPress={() => router.push(`/search/Nearby Jobs`)}>
-          <Text>Show All</Text>
-        </TouchableOpacity>
-      </View>
+    <>
+      <Stack.Screen
+        options={{
+          headerBackVisible: false,
+          headerTitle: params.search,
+          headerLeft: () => {
+            return (
+              <ScreenHeaderBtn icon={left} handlePress={() => router.back()} />
+            );
+          },
+        }}
+      />
       <View>
         {isLoading ? (
           <ActivityIndicator />
@@ -51,9 +56,9 @@ function NearJobs() {
           </ScrollView>
         )}
       </View>
-    </View>
+    </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -84,4 +89,5 @@ const styles = StyleSheet.create({
     color: "red",
   },
 });
-export default NearJobs;
+
+export default Search;

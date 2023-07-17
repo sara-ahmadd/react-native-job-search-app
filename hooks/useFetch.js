@@ -20,7 +20,7 @@ const useFetch = (endPoint, searchQuery) => {
   const getJobs = async () => {
     setIsLoading(true);
     try {
-      // const response = await axios.request(options);
+      const response = await axios.request(options);
       setIsLoading(false);
       setJobs(response.data.data);
     } catch (error) {

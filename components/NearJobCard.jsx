@@ -16,8 +16,8 @@ function NearJobCard({ job, handleNavigate }) {
         <MaterialIcons name="work" size={24} color="black" />
       )}
       <TouchableOpacity style={styles.details}>
-        <Text numberOfLines={1}>{job.job_title}</Text>
-        <Text style={styles.companyName}>{job.job_employment_type}</Text>
+        <Text numberOfLines={1}>{job?.job_title}</Text>
+        <Text style={styles.companyName}>{job?.job_employment_type}</Text>
       </TouchableOpacity>
     </TouchableOpacity>
   );
